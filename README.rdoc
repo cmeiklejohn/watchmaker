@@ -54,7 +54,7 @@ watchmaker.
 
 ==== Inject created objects into the lambda
 
-    Watchmaker.learn :garage_and_car, :factories => [:garage, :car] do |garage, car| 
+    Watchmaker.learn :car_in_garage, :factories => [:garage, :car] do |garage, car| 
       garage.cars << car
     end
 
