@@ -7,5 +7,4 @@ spec/*.log
 db/*.sqlite3
 html
 *.rbc
-gemfiles
 tmp
