@@ -1,0 +1,11 @@
+*.gem
+.bundle
+Gemfile.lock
+pkg/*
+coverage
+spec/*.log
+db/*.sqlite3
+html
+*.rbc
+gemfiles
+tmp

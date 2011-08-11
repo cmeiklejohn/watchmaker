@@ -1,0 +1,83 @@
+= Watchmaker
+
+Build complex objects easily for use in integration tests.
+
+== Motivation
+
+Extract complex setup code for integration tests out into a central
+place; for example: 
+
+* Share setup code between cucumber and test/unit by centralizing it.
+* Run this code in the console in development mode to seed your db with test data.
+
+== Inspiration for the name
+
+William Paley's {Watchmaker Analogy and Argument}[http://en.wikipedia.org/wiki/Watchmaker_analogy#The_Watchmaker_argument].
+
+== Using
+
+=== Basics
+
+Watchmaker creates persisted objects only.  This is because these
+objects are meant for integration tests where persistence is required.
+
+=== Learn profiles
+
+==== Lambda-based profiles
+
+When called, will call the lambda.
+
+    Watchmaker.learn :two_garages do
+      2.times do 
+        Factory.create :garage
+      end
+    end
+
+==== Factory-based profiles
+
+Create a garage using the garage factory.
+
+    Watchmaker.learn :garage, :factories => [:garage] do
+      # Some other post-factory creation setup here.
+    end
+
+==== Watchmaker-based profiles
+
+Create a garage using the garage factory.
+
+    Watchmaker.learn :garage, :factories => [:garage]
+
+Create a car using the car factory, and a garage using the garage
+watchmaker.
+
+    Watchmaker.learn :car, :factories => [:car], :watchmakers => [:garage]
+
+==== Inject created objects into the lambda
+
+    Watchmaker.learn :garage_and_car, :factories => [:garage, :car] do |objects| 
+      @garage = objects.first
+      @car    = objects.last
+
+      @garage.cars << @car
+    end
+
+==== Grab your objects
+
+Watchmaker returns the objects created.
+
+    objects = Watchmaker.construct(:garage)
+    objects.first.should be_a_kind_of Garage # true
+
+=== Construct objects
+
+    Watchmaker.construct :two_garages
+
+    Watchmaker.construct :garages
+
+== License
+
+Watchmaker is Copyright © 2011 Christopher Meiklejohn.  It is free software, and may be redistributed under the terms specified in the LICENSE file.
+
+== About
+
+The watchmaker gem was written by {Christopher Meiklejohn}[mailto:cmeiklejohn@swipely.com] from {Swipely, Inc.}[http://www.swipely.com].
