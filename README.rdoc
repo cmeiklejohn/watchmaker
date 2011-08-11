@@ -10,10 +10,6 @@ place; for example:
 * Share setup code between cucumber and test/unit by centralizing it.
 * Run this code in the console in development mode to seed your db with test data.
 
-== Inspiration for the name
-
-William Paley's {Watchmaker Analogy and Argument}[http://en.wikipedia.org/wiki/Watchmaker_analogy#The_Watchmaker_argument].
-
 == Using
 
 === Basics
@@ -54,6 +50,8 @@ watchmaker.
 
 ==== Inject created objects into the lambda
 
+Inject the factory-created garage and car into the block.
+
     Watchmaker.learn :car_in_garage, :factories => [:garage, :car] do |garage, car| 
       garage.cars << car
     end
@@ -62,14 +60,21 @@ watchmaker.
 
 Watchmaker returns the objects created.
 
-    objects = Watchmaker.construct(:garage)
-    objects.first.should be_a_kind_of Garage # true
+    Watchmaker.construct(:garage).first.class # Garage
 
 === Construct objects
 
+Build objects using the two garages profile.
+
     Watchmaker.construct :two_garages
 
+Build objects using the garage profile.
+
     Watchmaker.construct :garages
+
+== Inspiration for the name
+
+William Paley's {Watchmaker Analogy and Argument}[http://en.wikipedia.org/wiki/Watchmaker_analogy#The_Watchmaker_argument].
 
 == License
 
