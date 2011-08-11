@@ -1,4 +1,4 @@
-= Watchmaker https://secure.travis-ci.org/cmeiklejohn/watchmaker.png?branch=master
+= Watchmaker
 
 Build complex objects easily for use in integration tests.
 
