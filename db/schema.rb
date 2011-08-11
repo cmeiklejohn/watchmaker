@@ -11,6 +11,7 @@ ActiveRecord::Schema.define do
 
   create_table :cars, :force => true do |t|
     t.string :name
+    t.integer :garage_id
     t.timestamps
   end
 end
