@@ -65,7 +65,7 @@ module Watchmaker # :nodoc:
 
       # Return objects.
       #
-      objects.flatten
+      objects
 
     else
       raise "#{profile} is not a valid profile"
