@@ -10,8 +10,8 @@ Gem::Specification.new do |s|
   s.authors     = ["Christopher Meiklejohn"]
   s.email       = ["christopher.meiklejohn@gmail.com"]
   s.homepage    = "https://github.com/cmeiklejohn/watchmaker"
-  s.summary     = %q{Build complex objects easily for use in integration tests}
-  s.description = %q{Build complex objects easily for use in integration tests}
+  s.summary     = %q{Build complex objects easily for use in integration tests.}
+  s.description = %q{Build complex objects easily for use in integration tests.}
 
   s.rubyforge_project = "watchmaker"
 
@@ -24,7 +24,7 @@ Gem::Specification.new do |s|
   s.add_dependency('factory_girl')
   s.add_dependency('factory_girl_rails')
 
-  s.add_development_dependency('bundler', '~> 1.0.0')
+  s.add_development_dependency('bundler', '~> 1.0.15')
   s.add_development_dependency('rspec') 
   s.add_development_dependency('rspec-rails') 
   s.add_development_dependency('sqlite3')
