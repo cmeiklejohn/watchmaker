@@ -14,21 +14,20 @@ describe Garage do
   end
 
   it "return the objects created from a watchmaker" do
-    objects = Watchmaker.construct(:garage)
+    Watchmaker.construct(:garage).first.should be_a_kind_of Garage
     Garage.all.count.should == 1
-    objects.first.should be_a_kind_of Garage
   end
 
   it "should create a garage and it's from the factory based watchmaker" do 
-    Watchmaker.construct(:garage_and_car)
-    Garage.all.count.should == 1
+    Watchmaker.construct(:car_in_garage)
     Car.all.count.should == 1
+    Garage.all.count.should == 1
     Garage.first.cars.should include(Car.first)
   end
 
   it "should create a car from the watchmaker based watchmaker" do 
     Watchmaker.construct(:car)
-    Garage.all.count.should == 1
     Car.all.count.should == 1
+    Garage.all.count.should == 1
   end
 end
