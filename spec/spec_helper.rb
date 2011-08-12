@@ -13,7 +13,6 @@ require 'diesel/testing'
 require 'rspec/rails'
 
 require 'factory_girl_rails'
-require 'timecop'
 
 require 'watchmaker'
 

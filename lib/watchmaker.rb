@@ -2,7 +2,7 @@
 
 require "watchmaker/version"
 
-module Watchmaker # :nodoc:
+module Watchmaker
 
   # Attribute accessors to hold profile mappings.
   #
@@ -25,7 +25,7 @@ module Watchmaker # :nodoc:
 
   end
 
-  # Contruct a profile based on lambda.
+  # Contruct a profile.
   #
   def self.construct(profile)
 
