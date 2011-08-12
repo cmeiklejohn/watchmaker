@@ -6,6 +6,12 @@ Watchmaker.learn :two_garages do
   end
 end
 
+Watchmaker.learn :two_cars do
+  2.times do 
+    Factory.create(:car)
+  end
+end
+
 Watchmaker.learn :garage, :factories => [:garage]
 
 Watchmaker.learn :car, :factories => [:car], :watchmakers => [:garage]
