@@ -16,13 +16,13 @@ module Watchmaker
 
         # If a profile exists, call the proc we've stored; if not, raise.
         #
-        if selected_profile = Configuration.instance.profiles[profile]
+        if selected_profile = Configuration.learned(profile)
 
-          if options = selected_profile[:options]
+          if dependencies = selected_profile[:dependencies]
 
             # For any supplied factories, create them.
             #
-            if factories = options[:factories] 
+            if factories = dependencies[:factories] 
               factories.each do |factory|
                 objects << Factory.create(factory.to_sym)
               end
@@ -30,7 +30,7 @@ module Watchmaker
 
             # For any supplied watchmakers, create them.
             #
-            if watchmakers = options[:watchmakers] 
+            if watchmakers = dependencies[:watchmakers] 
               watchmakers.each do |watchmaker|
                 objects << construct(watchmaker.to_sym)
               end
@@ -40,7 +40,7 @@ module Watchmaker
 
           # Run the supplied block.
           #
-          if block = selected_profile.delete(:block)
+          if block = selected_profile[:block]
             objects << block.call(objects)
           end
 

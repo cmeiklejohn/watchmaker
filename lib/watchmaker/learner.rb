@@ -6,17 +6,10 @@ module Watchmaker
 
     module ClassMethods
 
-      # Learn a new profile.
+      # Learn a profile by taking explicit dependencies.
       #
-      def learn(profile, options = {}, &block)
-
-        # Add the block to the list of known profiles.
-        #
-        Configuration.instance.profiles[profile] = {
-          :options => options, 
-          :block   => block 
-        }
-
+      def learn(name, dependencies = {}, &block)
+        Configuration.learn(name, dependencies, &block)
       end
 
     end
