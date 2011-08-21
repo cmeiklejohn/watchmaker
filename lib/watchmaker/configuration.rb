@@ -1,5 +1,7 @@
 # encoding: UTF-8
 
+require 'singleton'
+
 module Watchmaker # :nodoc:
 
   # Singleton configuration class to hold all configured information.
