@@ -1,6 +1,6 @@
 # encoding: UTF-8
 
-module Watchmaker
+module Watchmaker # :nodoc:
 
   # Singleton configuration class to hold all configured information.
   #
@@ -26,14 +26,18 @@ module Watchmaker
       instance.learned(name)
     end
 
-    def learn(name, dependencies, &block) 
+    def self.learned?(name)
+      !!learned(name)
+    end
+
+    def learn(name, dependencies, &block) # :nodoc:
       @profiles[name] = { 
         :dependencies => dependencies,
         :block        => block
       }
     end
 
-    def learned(name)
+    def learned(name) # :nodoc:
       @profiles[name]
     end
 

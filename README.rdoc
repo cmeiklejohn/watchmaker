@@ -19,6 +19,14 @@ objects are meant for integration tests where persistence is required.
 
 === Learn profiles
 
+==== Implicit profiles
+
+Specify a dependency hash of profile name to objects.  The watchmaker
+will either yield another watchmaker or a factory when resolving those
+dependencies.
+
+  Watchmaker.learn :lots_of_things => [:car, :garage, :boat] 
+
 ==== Lambda-based profiles
 
 When called, will call the lambda.

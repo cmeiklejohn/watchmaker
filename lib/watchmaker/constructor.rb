@@ -6,8 +6,20 @@ module Watchmaker
 
     module ClassMethods
 
-      # Contruct a profile.
+      # Construct from a factory.
       #
+      def construct_from_factory(factory)
+        Factory.create(factory.to_sym)
+      end
+     
+      # Construct from another watchmaker.
+      # 
+      def construct_from_watchmaker(watchmaker)
+        construct(watchmaker.to_sym)
+      end
+
+      # Contruct a profile.
+      # 
       def construct(profile)
 
         # Store created objects.
@@ -20,11 +32,23 @@ module Watchmaker
 
           if dependencies = selected_profile[:dependencies]
 
+            # For any abstract dependencies, infer how to create them.
+            #
+            if abstracts = dependencies[:abstract] 
+              abstracts.each do |abstract|
+                if Configuration.learned?(abstract)
+                  objects << construct_from_watchmaker(abstract)
+                else
+                  objects << construct_from_factory(abstract)
+                end
+              end
+            end
+
             # For any supplied factories, create them.
             #
             if factories = dependencies[:factories] 
               factories.each do |factory|
-                objects << Factory.create(factory.to_sym)
+                objects << construct_from_factory(factory)
               end
             end
 
@@ -32,7 +56,7 @@ module Watchmaker
             #
             if watchmakers = dependencies[:watchmakers] 
               watchmakers.each do |watchmaker|
-                objects << construct(watchmaker.to_sym)
+                objects << construct_from_watchmaker(watchmaker)
               end
             end
 

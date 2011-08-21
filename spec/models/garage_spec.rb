@@ -33,8 +33,15 @@ describe Garage do
   end
 
   it "should create a car from the watchmaker based watchmaker" do 
-    Watchmaker.construct(:car).first.should be_a_kind_of Car
+    Watchmaker.construct(:car_with_garage).first.should be_a_kind_of Car
     Car.all.count.should == 1
     Garage.all.count.should == 1
+  end
+
+  it "should be able to use the new syntax to build based on factories or watchmakers" do 
+    Watchmaker.construct(:two_cars_and_two_garages)
+    Garage.all.count.should == 2
+    Car.all.count.should == 2
+    Garage.last.cars.count.should == 2
   end
 end

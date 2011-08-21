@@ -5,7 +5,7 @@ require "watchmaker/configuration"
 require "watchmaker/learner"
 require "watchmaker/constructor"
 
-module Watchmaker
+module Watchmaker # :nodoc:
   include Learner 
   include Constructor
 end
