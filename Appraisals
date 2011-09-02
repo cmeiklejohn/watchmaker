@@ -4,8 +4,8 @@ appraise "rails-master" do
   gem "rails", :git => "git://github.com/rails/rails.git"
 end
 
-appraise "rails-3.1.0.rc5" do
-  gem "rails", "3.1.0.rc5"
+appraise "rails-3.1.0" do
+  gem "rails", "3.1.0"
 end
 
 appraise "rails-3.0.9" do
