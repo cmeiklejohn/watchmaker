@@ -14,17 +14,13 @@ place; for example:
 
 === Define profiles
 
-==== Implicit profiles
-
-Specify a dependency hash of profile name to objects.  The watchmaker
-will either yield another watchmaker or a factory when resolving those
-dependencies.
+Specify car, garage and boat as a dependency for lots of things.  Watchmaker 
+will either use a watchmaker by that name to fulfill that dependency, or fall 
+back to the factory if it doesn't exist.
 
   Watchmaker.define :lots_of_things => [:car, :garage, :boat] 
 
-==== Lambda-based profiles
-
-When called, will call the lambda.
+Specify a block with things to do do:
 
     Watchmaker.define :two_garages do
       2.times do 
@@ -32,32 +28,31 @@ When called, will call the lambda.
       end
     end
 
-==== Factory-based profiles
-
-Create a garage using the garage factory.
+Specify a factory as a dependency:
 
     Watchmaker.define :garage, :factories => [:garage] do
       # Some other post-factory creation setup here.
     end
 
-==== Watchmaker-based profiles
+Specify multiple factories as dependencies: 
 
-Create a garage using the garage factory.
+    Watchmaker.define :garages, :factories => [:garage, :garage] do
+      # Some other post-factory creation setup here.
+    end
 
-    Watchmaker.define :garage, :factories => [:garage]
+Pass those objects in to the block:
 
-Create a car using the car factory, and a garage using the garage
-watchmaker.
-
-    Watchmaker.define :car, :factories => [:car], :watchmakers => [:garage]
-
-==== Inject created objects into the lambda
-
-Inject the factory-created garage and car into the block.
-
-    Watchmaker.define :car_in_garage, :factories => [:garage, :car] do |garage, car| 
+    Watchmaker.define :car_and_driver, :factories => [:garage, :car] do |garage, car|
       garage.cars << car
     end
+
+Sepcify another watchmaker as a dependency:
+
+    Watchmaker.define :car, :watchmakers => [:garage]
+
+Specify a factory and a watchmaker as a dependency:
+
+    Watchmaker.define :car, :factories => [:car], :watchmakers => [:garage]
 
 === Manufacture objects
 
