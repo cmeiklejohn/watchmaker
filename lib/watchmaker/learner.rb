@@ -8,7 +8,7 @@ module Watchmaker
 
       # Learn a profile by taking explicit dependencies.
       #
-      def learn(name, dependencies = {}, &block)
+      def define(name, dependencies = {}, &block)
 
         if name.is_a?(Hash)
           
@@ -27,6 +27,8 @@ module Watchmaker
 
         Configuration.learn(name, dependencies, &block)
       end
+
+      alias :learn :define
 
       # Get the profile name out of a dependency hash.
       #
