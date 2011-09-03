@@ -12,12 +12,7 @@ place; for example:
 
 == Using
 
-=== Basics
-
-Watchmaker creates persisted objects only.  This is because these
-objects are meant for integration tests where persistence is required.
-
-=== Learn profiles
+=== Define profiles
 
 ==== Implicit profiles
 
@@ -25,13 +20,13 @@ Specify a dependency hash of profile name to objects.  The watchmaker
 will either yield another watchmaker or a factory when resolving those
 dependencies.
 
-  Watchmaker.learn :lots_of_things => [:car, :garage, :boat] 
+  Watchmaker.define :lots_of_things => [:car, :garage, :boat] 
 
 ==== Lambda-based profiles
 
 When called, will call the lambda.
 
-    Watchmaker.learn :two_garages do
+    Watchmaker.define :two_garages do
       2.times do 
         Factory.create :garage
       end
@@ -41,7 +36,7 @@ When called, will call the lambda.
 
 Create a garage using the garage factory.
 
-    Watchmaker.learn :garage, :factories => [:garage] do
+    Watchmaker.define :garage, :factories => [:garage] do
       # Some other post-factory creation setup here.
     end
 
@@ -49,36 +44,36 @@ Create a garage using the garage factory.
 
 Create a garage using the garage factory.
 
-    Watchmaker.learn :garage, :factories => [:garage]
+    Watchmaker.define :garage, :factories => [:garage]
 
 Create a car using the car factory, and a garage using the garage
 watchmaker.
 
-    Watchmaker.learn :car, :factories => [:car], :watchmakers => [:garage]
+    Watchmaker.define :car, :factories => [:car], :watchmakers => [:garage]
 
 ==== Inject created objects into the lambda
 
 Inject the factory-created garage and car into the block.
 
-    Watchmaker.learn :car_in_garage, :factories => [:garage, :car] do |garage, car| 
+    Watchmaker.define :car_in_garage, :factories => [:garage, :car] do |garage, car| 
       garage.cars << car
     end
 
-==== Grab your objects
+=== Manufacture objects
+
+Build in-memory objects using the two garages profile.
+
+    Watchmaker.build :two_garages
+
+Build persisted objects using the two garages profile.
+
+    Watchmaker.create :two_garages
+
+==== Get your objects back
 
 Watchmaker returns the objects created.
 
-    Watchmaker.construct(:garage).first.class # Garage
-
-=== Construct objects
-
-Build objects using the two garages profile.
-
-    Watchmaker.construct :two_garages
-
-Build objects using the garage profile.
-
-    Watchmaker.construct :garages
+    Watchmaker.create(:garage).first.class # Garage
 
 == Inspiration for the name
 
