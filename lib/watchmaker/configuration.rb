@@ -20,28 +20,40 @@ module Watchmaker # :nodoc:
       @profiles = {}
     end
 
-    def self.learn(name, dependencies, &block) 
-      instance.learn(name, dependencies, &block)
+    class << self 
+      def define(name, dependencies, &block) 
+        instance.define(name, dependencies, &block)
+      end
+
+      alias :learn :define
+
+      def defined(name)
+        instance.defined(name)
+      end
+
+      alias :learned :defined
+
+      def defined?(name)
+        !!defined(name)
+      end
+
+      alias :learned? :defined?
     end
 
-    def self.learned(name)
-      instance.learned(name)
-    end
-
-    def self.learned?(name)
-      !!learned(name)
-    end
-
-    def learn(name, dependencies, &block) # :nodoc:
+    def define(name, dependencies, &block) # :nodoc:
       @profiles[name] = { 
         :dependencies => dependencies,
         :block        => block
       }
     end
 
-    def learned(name) # :nodoc:
+    alias :learn :define
+
+    def defined(name) # :nodoc:
       @profiles[name]
     end
+
+    alias :learned :defined
 
   end
 
