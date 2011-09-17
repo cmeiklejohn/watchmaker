@@ -10,8 +10,8 @@ Gem::Specification.new do |s|
   s.authors     = ["Christopher Meiklejohn"]
   s.email       = ["christopher.meiklejohn@gmail.com"]
   s.homepage    = "https://github.com/cmeiklejohn/watchmaker"
-  s.summary     = %q{Build complex objects easily for use in integration tests.}
-  s.description = %q{Build complex objects easily for use in integration tests.}
+  s.summary     = %q{Extract test setup and factory instantiation into reusable objects}
+  s.description = s.summary
 
   s.rubyforge_project = "watchmaker"
 

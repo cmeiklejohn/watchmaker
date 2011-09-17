@@ -1,6 +1,6 @@
 = Watchmaker
 
-Build complex objects easily for use in integration tests.
+Extract test setup and factory instantiation into reusable objects.
 
 == Motivation
 
