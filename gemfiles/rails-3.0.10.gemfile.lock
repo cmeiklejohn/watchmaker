@@ -1,7 +1,7 @@
 PATH
   remote: /home/cmeiklejohn/Repositories/watchmaker
   specs:
-    watchmaker (0.2.0)
+    watchmaker (0.2.2)
       factory_girl
       factory_girl_rails
       rails (~> 3.0)

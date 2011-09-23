@@ -51,7 +51,7 @@ GIT
 PATH
   remote: /home/cmeiklejohn/Repositories/watchmaker
   specs:
-    watchmaker (0.2.0)
+    watchmaker (0.2.2)
       factory_girl
       factory_girl_rails
       rails (~> 3.0)
@@ -69,7 +69,7 @@ GEM
       railties
     diff-lcs (1.1.2)
     erubis (2.7.0)
-    factory_girl (2.0.3)
+    factory_girl (2.0.5)
     factory_girl_rails (1.1.0)
       factory_girl (~> 2.0.0)
       railties (>= 3.0.0)
