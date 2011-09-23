@@ -5,4 +5,5 @@ script: "bundle exec rake spec"
 gemfile:
   - gemfiles/rails-3.0.10.gemfile
   - gemfiles/rails-3.1.0.gemfile
+  - gemfiles/rails-3.1.1.rc1.gemfile
   - gemfiles/rails-master.gemfile
